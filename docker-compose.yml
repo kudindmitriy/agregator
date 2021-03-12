@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql:8
+    command: ['--sql_mode=', '--default-authentication-plugin=mysql_native_password']
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: agregator
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - '3306:3306'
+    security_opt:
+      - seccomp:unconfined
+volumes:
+  db_data:
